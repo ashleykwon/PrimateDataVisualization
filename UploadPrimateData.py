@@ -8,7 +8,7 @@ def dataUploader(visType, habitatType):
     dataToSend = {}
     
     # Open the chosen CSV file
-    dataDir = 'C:/Users/Ashley Kwon/Desktop/PrimateData/'
+    dataDir = 'filepath'
     fileToRead = dataDir+habitatType
     lineNum = 0
 
