@@ -8,7 +8,7 @@ def dataUploader(visType, habitatType):
     dataToSend = {}
     
     # Open the chosen CSV file
-    dataDir = 'filepath'
+    dataDir = 'datadir'
     fileToRead = dataDir+habitatType
     lineNum = 0
 
@@ -17,17 +17,17 @@ def dataUploader(visType, habitatType):
         csv_reader = csv.reader(csv_file)
         for line in csv_reader:
             if lineNum != 0: #don't include metadata
-                dataEntry = [line[2]] 
+                # dataEntry = [line[2]] 
                 if visType == "bodymass":
-                    dataEntry.append(float(line[5])) #append body mass
+                    dataToSend[line[2]] = float(line[5]) #append body mass
                 elif visType == "diet":
-                    dataEntry.append(line[4])
+                    dataToSend[line[2]] =line[4]
                 else:
                     print("error")
                 # dataToSend.append(dataEntry)
-                dataToSend[int(lineNum)] = dataEntry
+                # dataToSend[int(lineNum)] = dataEntry
             lineNum += 1
-    with open("wetland_diet.json", "w") as fileName:
+    with open("savanna_bodymass.json", "w") as fileName:
         json.dump(dataToSend, fileName)
     return dataToSend
 
@@ -35,4 +35,4 @@ def dataUploader(visType, habitatType):
 
 
 if __name__ == '__main__':
-    print(dataUploader("diet", "wetland.csv"))
+    print(dataUploader("bodymass", "savanna.csv"))
